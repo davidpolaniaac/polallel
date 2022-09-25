@@ -1,0 +1,43 @@
+{
+  "name": "polallel",
+  "version": "1.0.0",
+  "description": "node js library to perform operations in parallel",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "test",
+    "prettier": "prettier --config .prettierrc '**/*.ts' --write",
+    "prebuild": "rimraf ./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidpolaniaac/polallel.git"
+  },
+  "keywords": [
+    "parallel"
+  ],
+  "author": "davidpolaniaac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidpolaniaac/polallel/issues"
+  },
+  "homepage": "https://github.com/davidpolaniaac/polallel#readme",
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "rxjs": "^7.5.6"
+  }
+}
