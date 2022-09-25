@@ -4,6 +4,9 @@
   "description": "node js library to perform operations in parallel",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "test",
