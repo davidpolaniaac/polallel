@@ -1,4 +1,4 @@
-import { EMPTY, Observable, catchError, defer, firstValueFrom, from, mergeMap, retry, toArray } from 'rxjs'
+import { EMPTY, Observable, catchError, defer, firstValueFrom, from, mergeMap, retry, toArray } from 'rxjs';
 
 /**
  * @param  {T[]} elements
@@ -21,8 +21,8 @@ export async function parallelAll<T, K>(
             )
         ),
         toArray()
-    )
-    return await firstValueFrom(source$)
+    );
+    return await firstValueFrom(source$);
 }
 
 /**
@@ -50,6 +50,6 @@ export async function parallel<T, K>(
             concurrencyLimit
         ),
         toArray()
-    )
-    return await firstValueFrom(source$)
+    );
+    return await firstValueFrom(source$);
 }

@@ -7,10 +7,10 @@
 export async function retryPromise(fn: Function, args: any[], retries: number = 0): Promise<any> {
     return fn(...args).catch(async (err: any) => {
         if (retries <= 0) {
-            return await Promise.reject(err.message)
+            return await Promise.reject(err.message);
         }
-        return await retryPromise(fn, args, retries - 1)
-    })
+        return await retryPromise(fn, args, retries - 1);
+    });
 }
 
 /**
@@ -26,16 +26,16 @@ export function retryFunction(
 ): any {
     while (retryOptions.retryCount >= 0) {
         try {
-            return func(...args)
+            return func(...args);
         } catch (e) {
             if (retryOptions.retryCount <= 0) {
                 if (retryOptions.continueOnError) {
-                    break
+                    break;
                 } else {
-                    throw e
+                    throw e;
                 }
             } else {
-                retryOptions.retryCount--
+                retryOptions.retryCount--;
             }
         }
     }
