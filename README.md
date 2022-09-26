@@ -233,13 +233,13 @@ Can be imported directly from the function type to exclude native or reactive
 USAGE
 
 // rxParallel is an alias for parallel with reactive extensions
-import { parallel } from 'polallel/reactive'
+import { parallel } from 'polallel/lib/reactive'
 
 // rxParallelAll is an alias for parallel with reactive extensions
-import { parallelAll } from 'polallel/reactive'
+import { parallelAll } from 'polallel/lib/reactive'
 
 // import native functions with promises
-import { parallel, parallelAll, parallelBatches } from 'polallel/native'
+import { parallel, parallelAll, parallelBatches } from 'polallel/lib/native'
 
 ```
 
@@ -253,7 +253,7 @@ There are other helper functions to retry asynchronous functions or synchronous 
 ```
 USAGE
 
-import { retryPromise } from 'polallel/retry'
+import { retryPromise } from 'polallel'
 
 ```
 

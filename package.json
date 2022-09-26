@@ -1,6 +1,6 @@
 {
   "name": "polallel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JS library to perform operations in parallel",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
