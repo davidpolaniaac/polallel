@@ -44,7 +44,8 @@ example()
 * [`parallelAll`](#parallelAll)
 * [`parallelBatches`](#parallelBatches)
 * [`rxParallel`](#rxParallel)
-* [`rxParallelAll`](#rxParallelAll)
+* [`rxAsyncParallel`](#rxAsyncParallel)
+* [`rxAsyncParallelAll`](#rxAsyncParallelAll)
 
 ## `parallel`
 
@@ -156,7 +157,7 @@ OPTIONS
 
 ## `rxParallel`
 
-The rxParallel function is used to call an asynchronous operation for each element of the array with the possibility of indicating the number of concurrent executions and retries for each element. This function uses reactive extensions
+The rxParallel function is used to call an asynchronous operation for each element of the array with the possibility of indicating the number of concurrent executions and retries for each element. This function uses reactive extensions and return a Observable
 
 ```
 USAGE
@@ -168,10 +169,38 @@ async function asyncOperation(element: any, arg1: string, args2: number): Promis
     ...
 }
 
+rxParallel(listOfArguments, asyncOperation, 5 , 3, ["arg1", 4]).subscribe(console.log);
+
+OPTIONS
+
+/**
+ * @param  {T[]} elements
+ * @param  {(element:T,...parameters:any)=>Promise<K>} asyncOperation
+ * @param  {number=10} concurrencyLimit
+ * @param  {number=0} retryLimit
+ * @param  {any[]=[]} parameters
+ * @returns Observable
+ */
+```
+
+## `rxAsyncParallel`
+
+The rxAsyncParallel function is used to call an asynchronous operation for each element of the array with the possibility of indicating the number of concurrent executions and retries for each element. This function uses reactive extensions
+
+```
+USAGE
+
+import { rxAsyncParallel } from 'polallel'
+
+
+async function asyncOperation(element: any, arg1: string, args2: number): Promise<any> {
+    ...
+}
+
 async function example(): Promise<void> {
   try {
     const listOfArguments = [...Array(20).keys()];
-    const examples: any[] = await rxParallel(listOfArguments, asyncOperation, 5, 2, ["arg1", 4]);
+    const examples: any[] = await rxAsyncParallel(listOfArguments, asyncOperation, 5, 2, ["arg1", 4]);
     console.log("examples", examples);
   } catch (error) {
     console.log(error.message);
@@ -190,14 +219,14 @@ OPTIONS
  */
 ```
 
-## `rxParallelAll`
+## `rxAsyncParallelAll`
 
-The rxParallelAll function is used to call an asynchronous operation for each element of the array and retrieves for each element. This function uses reactive extensions
+The rxAsyncParallelAll function is used to call an asynchronous operation for each element of the array and retrieves for each element. This function uses reactive extensions
 
 ```
 USAGE
 
-import { rxParallelAll } from 'polallel'
+import { rxAsyncParallelAll } from 'polallel'
 
 
 async function asyncOperation(element: any, arg1: string, args2: number): Promise<any> {
@@ -207,7 +236,7 @@ async function asyncOperation(element: any, arg1: string, args2: number): Promis
 async function example(): Promise<void> {
   try {
     const listOfArguments = [...Array(20).keys()];
-    const examples: any[] = await rxParallelAll(listOfArguments, asyncOperation, 2, ["arg1", 4]);
+    const examples: any[] = await rxAsyncParallelAll(listOfArguments, asyncOperation, 2, ["arg1", 4]);
     console.log("examples", examples);
   } catch (error) {
     console.log(error.message);
@@ -232,11 +261,8 @@ Can be imported directly from the function type to exclude native or reactive
 ```
 USAGE
 
-// rxParallel is an alias for parallel with reactive extensions
-import { parallel } from 'polallel/lib/reactive'
-
-// rxParallelAll is an alias for parallel with reactive extensions
-import { parallelAll } from 'polallel/lib/reactive'
+// rxParallel use reactive extensions
+import { rxParallel } from 'polallel/lib/reactive'
 
 // import native functions with promises
 import { parallel, parallelAll, parallelBatches } from 'polallel/lib/native'
@@ -262,6 +288,8 @@ import { retryPromise } from 'polallel'
 There are other helper functions
 
 - parallelAllRequired: all executions in parallel must be successful otherwise it will fail
+- rxAsyncParallelAll: all execution using reactive extension with asynchronous return
+- rxAsyncParallel: execution using reactive extension with asynchronous return
 
 ```
 USAGE
